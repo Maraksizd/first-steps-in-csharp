@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Калькулятор
+
+using System;
 
 namespace test_app
 {
