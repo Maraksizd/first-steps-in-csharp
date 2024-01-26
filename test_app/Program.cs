@@ -1,4 +1,4 @@
-﻿//Перевірка з трикутниками+вивід доаткової інформації про трикутник
+﻿//Копіювання масиву, додавання елементу в масив додавання деклькох елементів масиву, дії з масивами
 
 using System;
 
@@ -6,71 +6,74 @@ namespace test_app
 {
     internal class Program
     {
-        private const double pi = 3.14;
+        static int[] CombineArrays(int[] a, int[] b)
+        {
+            int newLength = a.Length + b.Length;
+            int[] newArr = new int[newLength];
+
+            Array.Copy(a, newArr, a.Length);
+            Array.Copy(b, 0, newArr, a.Length, b.Length);
+
+            return newArr;
+        }
+
+        static int[] ad_cell_toARR(int[] a)
+        {
+            int arr_size = a.Length;
+            arr_size++;
+
+            int[] newARR = new int[arr_size];
+
+            for (int i = 0; i < arr_size - 1; i++)
+            {
+                newARR[i] = a[i];
+            }
+
+            newARR[arr_size - 1] = 1;
+
+            return newARR;
+        }
+        
+        static void print_arr(int[] a)
+        {
+            int arr_size = a.Length;
+            for (int i = 0; i < arr_size; i++)
+            {
+                Console.WriteLine("елемент масиву №" + i + " " + a[i]);
+            }
+        }
 
         static void Main(string[] args)
         {
+            int[] arr1 = { 1, 2, 3, 4, 5 };
+            int[] arr2 = { 6, 7, 8, 9, 10 };
 
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            int[] new_arr = CombineArrays(arr1, arr2);
 
-            int a, b, c;
-            Console.WriteLine("Привіт, ця програма створена для перевірки трикутника на правильність. Щоб перевірити, чи трикутник правильний, введіть довжину сторін:");
+            print_arr(new_arr);
 
-            Console.WriteLine("Введіть сторону a:");
-            a = Int32.Parse(Console.ReadLine());
-
-            Console.WriteLine("Введіть сторону b:");
-            b = Int32.Parse(Console.ReadLine());
-
-            Console.WriteLine("Введіть сторону c:");
-            c = Int32.Parse(Console.ReadLine());
-
-            if (a + b > c && a + c > b && b + c > a)
-            {
-                Console.WriteLine("\nТакий трикутник існує!\n");
-
-                double S = triangle_area(a, b, c);
-                Console.WriteLine("Його площа буде становити: " + S);
-                find_angle(a, b, c);
-            }
-            else
-            {
-                Console.WriteLine("\nТакого трикутника не існує");
-            }
-        }
-
-        static void find_angle(int a, int b, int c)
-        {
-            double s = triangle_area(a, b, c);
-
-            double Ha = 2 * s / a;
-            double Hb = 2 * s / b;
-            double Hc = 2 * s / c;
-
-            double A, B, C;
-
-            A = Math.Asin(Ha / c);
-            B = Math.Asin(Hb / a);
-            C = Math.Asin(Hc / b);
-
-            double angle_a = A * 180 / pi;
-            double angle_b = B * 180 / pi;
-            double angle_c = C * 180 / pi;
-
-            int angA = Convert.ToInt32(angle_a);
-            int angB= Convert.ToInt32(angle_b);
-            int angC= Convert.ToInt32(angle_c);
-
-            Console.WriteLine("Кут А: " + angA+" градусів");
-            Console.WriteLine("Кут В: " + angB + " градусів");
-            Console.WriteLine("Кут С: " + angC + " градусів");
-        }
-
-        static double triangle_area(int x, int y, int z)
-        {
-            int P = x + y + z;
-            double area = Math.Sqrt(P / 2 * (P / 2 - x) * (P / 2 - y) * (P / 2 - z));
-            return area;
         }
     }
 }
+
+
+
+//static int[] adds_arays(int[] a, int[] b)
+//{
+
+//    var newLengs = a.Length + b.Length;
+
+
+//    int[] new_arr = new int[newLengs];
+
+//    for (int i = 0; i < a.Length; i++)
+//    {
+//        new_arr[i]= a[i];
+//    }
+//    for (int i = a.Length; i < newLengs; i++)
+//    {
+//        new_arr[i] = b[i];
+//    }
+
+//    return new_arr;
+//}
